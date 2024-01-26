@@ -2,7 +2,7 @@
   <div class="p-4 text-center">
     <h1 class="text-3xl font-bold mb-4">Past Projects</h1>
     <div class="slider-container">
-      <div class="slider" :style="{ transform: 'translateX(' + -currentIndex * (310 / totalImages) + '%)' }"> 
+      <div class="slider" :style="{ transform: 'translateX(' + -currentIndex * (270 / totalImages) + '%)' }"> 
         <div v-for="(image, index) in images" :key="index" class="slider-item">
           <div class="slider-image-container">
             <img :src="image.src" :alt="'Image ' + (index + 1)" class="slider-image">

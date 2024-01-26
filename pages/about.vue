@@ -1,82 +1,135 @@
 <template>
-  <div class="container mx-auto p-8 md:p-16 lg:p-24">
-    <div class="grid grid-cols-1 md:grid-cols-10 gap-8">
-      <div class="md:col-span-2"></div>
+  <div class="master h-screen flex flex-col items-center justify-center text-white text-center px-4 sm:px-10 md:px-12 lg:px-16">
+    <!-- ... existing template code ... -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="p-6 bg-gray-300 rounded-lg shadow-lg ">
+        <h2 class="text-3xl font-bold text-blue-900 leading-7">Contact Details</h2>
 
-      <div class="col-span-1 md:col-span-6 p-8 md:p-16 bg-gray-200 rounded-lg shadow-lg">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="md:col-span-1">
-            <h1 class="text-2xl md:text-4xl font-bold text-gray-800 mb-4 md:mb-6">
-              About Us
-            </h1>
-            <p class="text-base md:text-lg text-gray-700 leading-7">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure asperiores aspernatur, illo vitae quibusdam suscipit ipsa laborum omnis. At facilis, nobis fuga minima molestiae rem quis cum neque iste modi voluptas ullam! Tenetur nihil, neque itaque velit distinctio veniam quibusdam soluta, dicta sit fuga ratione nostrum repellat iure architecto perferendis nam quasi iusto optio incidunt natus mollitia voluptates consequuntur obcaecati? In, tenetur error nemo ea eius atque assumenda sit officia quaerat numquam dolor, quae eaque nostrum velit. Accusantium at ipsum corporis ut odit natus blanditiis delectus a repudiandae exercitationem repellendus, beatae tenetur incidunt facilis, cupiditate vel? Aliquid eligendi repellendus necessitatibus.
-            </p>
-            <div class="mt-6 md:mt-10">
-              <button class="custom-button text-gray-900 hover:text-white py-2 md:py-3 px-4 md:px-8 font-extrabold rounded transition-all transform duration-300 ease-in-out hover:shadow-xl">
-                Learn more..
-              </button>
-            </div>
-          </div>
-
-          <div class="md:col-span-1">
-            <img
-              src="@/assets/about.jpg"
-              alt="About Us Image"
-              class="w-full h-auto rounded-lg shadow-md"
-            />
-          </div>
-        </div>
+        <p class="text-gray-700 mt-4">
+          HMR Environmental Compound, Silang Industrial Estate Canlubang, Calamba, Laguna, Philippines 4028
+        </p>
+        <p class="text-blue-900 mt-4">info@fairdinkum.ph</p>
+        <p class="text-lg font-semibold text-blue-900 mt-4">+63 2 584 4061 (Local) | +63 2 584 4061 (Manila)</p>
       </div>
 
-      <div class="md:col-span-2"></div>
+      <div class="p-6 bg-gray-300 rounded-lg shadow-lg">
+        <h2 class="text-3xl font-bold text-blue-900 font-red-hat-display leading-7">Any Query?</h2>
+        <form @submit.prevent="submitForm" class="mt-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-600">Your Name:</label>
+              <input type="text" id="name" v-model="form.name" class="mt-1 p-2 w-full border rounded" required>
+            </div>
+            <div>
+              <label for="mobile" class="block text-sm font-medium text-gray-600">Your Mobile:</label>
+              <input
+                type="text"
+                id="mobile"
+                v-model="form.mobile_no"
+                class="mt-1 p-2 w-full border rounded"
+                placeholder="09*********"
+                pattern="09\d{9}"
+                maxlength="11"
+                required
+                title="Must be 11 digits (e.g., 09123456789)"
+              >
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-600">Your Email Address:</label>
+              <input type="email" id="email" v-model="form.email_address" class="mt-1 p-2 w-full border rounded">
+            </div>
+            <div>
+              <label for="subject" class="block text-sm font-medium text-gray-600" required>Subject:</label>
+              <input type="text" id="subject" v-model="form.subject" class="mt-1 p-2 w-full border rounded">
+            </div>
+          </div>
+          <div class="mb-4">
+            <label for="message" class="block text-sm font-medium text-gray-600">Your Message:</label>
+            <textarea id="message" v-model="form.message" class="mt-1 p-2 w-full border rounded"></textarea>
+          </div>
+          <div class="mb-4 flex justify-center">
+            <button class="custom-button text-gray-900 hover:bg-slate-950 hover:text-white py-3 px-6 md:px-8 font-extrabold rounded transition-all transform duration-300 ease-in-out hover:shadow-xl w-full md:w-auto" @click="submitForm">
+              Contact Us
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>
 
+<script>
+
+
+export default {
+  data() {
+    return {
+      form: {
+        name: "",
+        mobile_no: "",
+        email_address: "",
+        subject: "",
+        message: ""
+      },
+      mobileError: null,
+    };
+  },
+
+  methods: {
+    submitForm() {
+      // Check if all required fields are filled
+      if (this.form.mobile_no && this.form.name && this.form.email_address && this.form.subject) {
+        // All required fields are filled, show success toast
+        toast("Form submitted successfully!", {
+          autoClose: 2000,
+          position: 'top-right',
+          type: 'success'
+        });
+        this.sendEmail(); // Call sendEmail method here
+      } else {
+        // Not all required fields are filled, show an error toast or handle it as per your requirement
+      }
+    },
+
+    sendEmail() {
+      // Send email if mobile number is valid
+      this.$mail.send({
+        subject: this.form.subject,
+        html: `
+          <p>Name: ${this.form.name}</p>
+          <p>Mobile No: ${this.form.mobile_no}</p>
+          <p>Email Address: ${this.form.email_address}</p>
+          <p>Message: ${this.form.message}</p>
+        `
+      });
+
+      // Clear form fields after sending email
+      this.form.name = "";
+      this.form.mobile_no = "";
+      this.form.email_address = "";
+      this.form.subject = "";
+      this.form.message = "";
+
+      // Show success notification if needed
+    },
+  },
+};
+</script>
+
+
 <style scoped>
-.container {
-  max-width: 1800px;
-}
 
-.grid {
-  margin: 0 auto;
-}
-
-.bg-gray-200 {
-  background-color: #f0f4f8;
-}
-
-.rounded-lg {
-  border-radius: 1rem;
-}
-
-.shadow-lg {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-.text-2xl {
-  font-size: 1.5rem;
-}
-
-.text-base {
-  font-size: 1rem;
-}
-
-.leading-7 {
-  line-height: 1.7;
-}
-
-.custom-button {
-  background: linear-gradient(90deg, #111826 0%, #111826 50%, #fff 50%, #fff 100%);
-  background-size: 200% 100%;
-  background-position: right bottom;
-  transition: background-position 0.5s ease;
-}
-
-.custom-button:hover {
-  background-position: left bottom;
-  background-color: #e5e1e1; 
-  color: #dddddd; 
-}
+/* .master {
+  background: url('~/assets/samplebg.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+} */
 </style>

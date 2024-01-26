@@ -2,7 +2,7 @@
   <div class="master h-screen flex flex-col items-center justify-center text-white text-center px-4 sm:px-10 md:px-12 lg:px-16">
     <!-- ... existing template code ... -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class="p-6 bg-gray-200 rounded-lg shadow-lg">
+      <div class="p-6 bg-gray-300 rounded-lg shadow-lg ">
         <h2 class="text-3xl font-bold text-blue-900 leading-7">Contact Details</h2>
 
         <p class="text-gray-700 mt-4">
@@ -12,7 +12,7 @@
         <p class="text-lg font-semibold text-blue-900 mt-4">+63 2 584 4061 (Local) | +63 2 584 4061 (Manila)</p>
       </div>
 
-      <div class="p-6 bg-gray-200 rounded-lg shadow-lg">
+      <div class="p-6 bg-gray-300 rounded-lg shadow-lg">
         <h2 class="text-3xl font-bold text-blue-900 font-red-hat-display leading-7">Any Query?</h2>
         <form @submit.prevent="submitForm" class="mt-4">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -119,10 +119,10 @@ export default {
 </script>
 
 
-<style scoped>
+<!-- <style scoped>
 
 .master {
-  background: url('~/assets/');
+  background: url('~/assets/samplebg.jpg');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -132,4 +132,4 @@ export default {
   justify-content: center;
   position: relative;
 }
-</style>
+</style> -->

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="p-4 text-center">
     <h1 class="text-3xl font-bold mb-4">Services</h1>
     <div class="slider-container">
@@ -150,7 +150,7 @@ function prevSlide() {
       if (!isPaused.value) {
         nextSlide();
       }
-    }, );
+    }, 5000);
   }
 
   function pauseSlideshow() {
@@ -290,4 +290,4 @@ h1 {
   }
 }
 
-</style>
+</style> -->
