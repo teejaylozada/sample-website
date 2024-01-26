@@ -231,4 +231,5 @@ onUnmounted(() => {
     transform: scaleX(1); /* Scale to 1 on hover */
     
   }
+  
 </style>
