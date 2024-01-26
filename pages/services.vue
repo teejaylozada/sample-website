@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div class="p-4 text-center">
     <h1 class="text-3xl font-bold mb-4">Services</h1>
     <div class="slider-container">
@@ -173,7 +173,7 @@ function prevSlide() {
 
 </script>
 
-<style scoped>
+<!-- <style scoped>
 h1 {
   font-size: 2rem;
 }
