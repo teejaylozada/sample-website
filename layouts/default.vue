@@ -4,16 +4,9 @@
     <header class="bg-gray-900 text-white py-4 md:py-6">
       <div class="container mx-auto flex justify-between items-center px-4 md:px-6">
         <!-- Logo -->
-
-        <div class="flex-container" @click="handleClick">
-          <img src="~/assets/logo.png" alt="Logo" class="logo" />
-          <div class="text-container">
-              <h1 class="text-lg sm:text-lg lg:text-lg text-gray-200 font-extrabold shadow-text font-display mb-2">
-                  Dental Clinic Name
-              </h1>
-          </div>
+        <div class="ml-4 md:ml-0">
+          <img src="~/assets/logo.png" alt="Logo" class="h-12 w-16 md:h-16 md:w-20" />
         </div>
-
 
         <div class="md:hidden relative" ref="dropdownContainer">
           <!-- Burger Menu Button -->
