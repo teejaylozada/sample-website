@@ -23,27 +23,27 @@
           </button>
 
           <!-- Dropdown Menu (Visible when the menu is open) -->
-          <div v-if="isMenuOpen" ref="dropdownMenu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-md z-10 border border-gray-300 overflow-hidden">
-            <div class="py-1">
-              <NuxtLink to="/" class="block px-4 py-2 text-gray-500 hover:bg-teal-100 flex items-center transition duration-300">
+          <div v-if="isMenuOpen" ref="dropdownMenu" class="absolute right-0 mt-2 w-48  bg-white rounded-lg shadow-md z-10 border border-gray-300 overflow-hidden">
+            <div class="py-1 bg-gray-900">
+              <NuxtLink to="/" @click="toggleMenu" class="block px-4 py-2 text-gray-500 hover:bg-gray-100 flex items-center transition duration-300">
                 <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h18M4 10h16M4 16h16"></path>
                 </svg>
                 Home
               </NuxtLink>
-              <NuxtLink to="/about" class="block px-4 py-2 text-gray-500 hover:bg-teal-100 flex items-center transition duration-300">
+              <NuxtLink to="/about" @click="toggleMenu" class="block px-4 py-2 text-gray-500 hover:bg-gray-100 flex items-center transition duration-300">
                 <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
                 About
               </NuxtLink>
-              <NuxtLink to="/services" class="block px-4 py-2 text-gray-500 hover:bg-teal-100 flex items-center transition duration-300">
+              <NuxtLink to="/services" @@click="toggleMenu" class="block px-4 py-2 text-gray-500 hover:bg-gray-100 flex items-center transition duration-300">
                 <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                 </svg>
                 Services
               </NuxtLink>
-              <NuxtLink to="/contact-us" class="block px-4 py-2 text-gray-500 hover:bg-teal-100 flex items-center transition duration-300">
+              <NuxtLink to="/contact-us" @click="toggleMenu" class="block px-4 py-2 text-gray-500 hover:bg-gray-100 flex items-center transition duration-300">
                 <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3v2H9v-2l3-3V8m0 6v2"></path>
@@ -62,10 +62,13 @@
             <li><NuxtLink to="/about" class="nav-link">About</NuxtLink></li>
             <li><NuxtLink to="/services" class="nav-link">Services</NuxtLink></li>
             <li><NuxtLink to="/contact-us" class="nav-link">Contact Us</NuxtLink></li>
-			<li>        
-            <button class="custom-button text-gray-900 hover:bg-slate-950 hover:text-white py-3 px-6 md:px-8 font-extrabold rounded transition-all transform duration-300 ease-in-out hover:shadow-xl" @click="handleClick">
-              Book Appointment
-            </button>
+		      	<li>        
+            <nuxt-link to="/about">
+              <button class="custom-button text-gray-900 hover:bg-slate-950 hover:text-white py-3 px-6 md:px-8 font-extrabold rounded transition-all transform duration-300 ease-in-out hover:shadow-xl" @click="handleClick">
+                  Book Appointment
+                </button>
+            </nuxt-link>
+
           </li>
         </ul>
       </div>
@@ -123,7 +126,6 @@ const handleClick = () => {
   alert("Dental Clinic Name clicked!");
 }
 
-
 const isMenuOpen = ref(false);
 
 function toggleMenu() {
@@ -139,10 +141,12 @@ function toggleMenu() {
 }
 
 function closeMenu(event) {
-  const dropdownContainer = document.querySelector('.md\\:hidden'); // Select the dropdown menu element
+  const dropdownContainer = refs.dropdownMenu;
+
   if (dropdownContainer && !dropdownContainer.contains(event.target)) {
     // Click occurred outside the dropdown, close the menu
     isMenuOpen.value = false;
+    document.removeEventListener('click', closeMenu);
   }
 }
 
@@ -234,7 +238,6 @@ onUnmounted(() => {
   .nav-link:hover::after {
     transform-origin: bottom left;
     transform: scaleX(1); /* Scale to 1 on hover */
-    
   }
 
 </style>

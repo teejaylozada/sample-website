@@ -1,25 +1,26 @@
 <template>
   <div class="container mx-auto p-8 md:p-16 lg:p-24">
-    <div class="grid grid-cols-1 md:grid-cols-10 gap-8">
-      <div class="md:col-span-2"></div>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
 
-      <div class="col-span-1 md:col-span-6 p-8 md:p-16 bg-gray-900 rounded-lg shadow-lg">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="md:col-span-1">
-            <h1 class="text-2xl md:text-4xl font-bold text-gray-200 mb-4 md:mb-6">
+      <div class="col-span-1 md:col-span-12 p-8 md:p-16 bg-gray-900 rounded-lg shadow-lg">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+          <div class="md:col-span-6">
+            <h1 class="text-2xl md:text-4xl font-bold text-gray-300 mb-4 md:mb-6">
               About Us
             </h1>
             <p class="text-base md:text-lg text-gray-400 leading-7">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure asperiores aspernatur, illo vitae quibusdam suscipit ipsa laborum omnis. At facilis, nobis fuga minima molestiae rem quis cum neque iste modi voluptas ullam! Tenetur nihil, neque itaque velit distinctio veniam quibusdam soluta, dicta sit fuga ratione nostrum repellat iure architecto perferendis nam quasi iusto optio incidunt natus mollitia voluptates consequuntur obcaecati? In, tenetur error nemo ea eius atque assumenda sit officia quaerat numquam dolor, quae eaque nostrum velit. Accusantium at ipsum corporis ut odit natus blanditiis delectus a repudiandae exercitationem repellendus, beatae tenetur incidunt facilis, cupiditate vel? Aliquid eligendi repellendus necessitatibus.
             </p>
             <div class="mt-6 md:mt-10">
-              <button class="custom-button text-gray-900 hover:text-white py-2 md:py-3 px-4 md:px-8 font-extrabold rounded transition-all transform duration-300 ease-in-out hover:shadow-xl">
-                Learn more..
-              </button>
+              <nuxt-link to="/about">
+                <button class="custom-button text-gray-900 hover:text-white py-2 md:py-3 px-4 md:px-8 font-extrabold rounded transition-all transform duration-300 ease-in-out hover:shadow-xl">
+                  Learn more..
+                </button>
+              </nuxt-link>
             </div>
           </div>
 
-          <div class="md:col-span-1">
+          <div class="md:col-span-6">
             <img
               src="@/assets/about.jpg"
               alt="About Us Image"
@@ -29,7 +30,6 @@
         </div>
       </div>
 
-      <div class="md:col-span-2"></div>
     </div>
   </div>
 </template>
