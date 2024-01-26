@@ -1,8 +1,8 @@
 <template>
   <!--HOME -->
-<div class="mastering-metal h-screen flex flex-col items-center justify-center text-white text-center px-0 sm:px-10  md:px-12 lg:px-16">
+<div class="mastering-metal h-screen flex flex-col items-center  justify-center text-white text-center px-0 sm:px-10  md:px-12 lg:px-16">
   <h1 class="mb-4 text-5xl sm:text-6xl lg:text-7xl sm:px-14 lg:px-32 xl:px-40 2xl:px-72 font-extrabold shadow-text font-display mb-10">
-      Dental Clinic Name...
+      Dental Clinic Name....
   </h1>
   <p class="text-lg md:text-xl justify-center text-center mb-10 px-10 sm:px-14 lg:px-32 xl:px-40 2xl:px-72 mt-10">
       Dental Clinic qoute ........<br>
@@ -12,20 +12,21 @@
       Book Now
   </button>
 </div>
-<div class="flex flex-col items-center justify-center text-white text-center px-0 sm:px-10  md:px-12 lg:px-16 my-12">
-  <h1 class="mb-4 text-5xl sm:text-6xl lg:text-7xl sm:px-14 lg:px-32 xl:px-40 2xl:px-72 font-extrabold shadow-text font-display mb-10 text-gray-900">
+<div class="flex flex-col items-center justify-center bg-gray-900 text-white text-center px-0 sm:px-10  md:px-12 lg:px-16 py-12">
+  <h1 class="mb-4 text-5xl sm:text-6xl lg:text-7xl sm:px-14 lg:px-32 xl:px-40 2xl:px-72 font-extrabold shadow-text font-display mb-10 text-gray-300">
       Welcome to Dental Clinic Name
   </h1>
-  <p class="text-lg md:text-xl justify-center text-center mb-10 px-10 sm:px-14 lg:px-32 xl:px-40 2xl:px-72 mt-10 text-gray-900">
+  <p class="text-lg md:text-xl justify-center text-center mb-10 px-10 sm:px-14 lg:px-32 xl:px-40 2xl:px-72 mt-10 text-gray-300">
       Dental clinic <br>
       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo officiis exercitationem aliquid deserunt eligendi ut quos ex! Aut rem voluptatum commodi assumenda dolorum aspernatur? Id laboriosam natus recusandae dignissimos facere mollitia. Odio, incidunt explicabo animi minus non rerum impedit enim temporibus neque ipsum sequi, obcaecati saepe quod soluta quo dolor. 
   </p>
 </div>
 <Slider />
-
+<IntroABout />
 </template>
 <script setup>
 import Slider from '@/components/slider.vue';
+import IntroABout from '@/components/intro-about.vue';
 const handleClick = () => {
   alert("Book Now clicked!");
 }
