@@ -61,7 +61,7 @@
   </div>
 </section>
 
-<section id="two" class=" md:hidden">
+<section id="two" class="md:hidden">
   <div class="container mx-auto p-8 md:p-16 lg:p-24">
     <div class="grid grid-cols-1 md:grid-cols-10 gap-8">
       <div class="md:col-span-2"></div>
