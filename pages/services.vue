@@ -173,7 +173,7 @@ function prevSlide() {
 
 </script>
 
-<!-- <style scoped>
+<style scoped>
 h1 {
   font-size: 2rem;
 }
@@ -290,4 +290,4 @@ h1 {
   }
 }
 
-</style> -->
+</style>

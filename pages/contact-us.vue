@@ -119,7 +119,7 @@ export default {
 </script>
 
 
-<!-- <style scoped>
+<style scoped>
 
 .master {
   background: url('~/assets/samplebg.jpg');
@@ -132,4 +132,4 @@ export default {
   justify-content: center;
   position: relative;
 }
-</style> -->
+</style>

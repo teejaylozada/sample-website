@@ -121,7 +121,7 @@ export default {
 
 <style scoped>
 
-/* .master {
+.master {
   background: url('~/assets/samplebg.jpg');
   background-position: center center;
   background-repeat: no-repeat;
@@ -131,5 +131,5 @@ export default {
   align-items: center;
   justify-content: center;
   position: relative;
-} */
+}
 </style>
