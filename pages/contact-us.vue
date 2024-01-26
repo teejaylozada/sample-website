@@ -1,5 +1,5 @@
 <template>
-  <section id="one" class="hidden md:block">
+  <section id="one" class="hidden sm:hidden md:block">
   <div class="master h-screen flex flex-col items-center justify-center text-white text-center px-4 sm:px-10 md:px-12 lg:px-16 ">
     <!-- ... existing template code ... -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
