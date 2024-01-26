@@ -1,63 +1,69 @@
 <template>
-  <div class="master h-screen flex flex-col items-center justify-center text-white text-center px-4 sm:px-10 md:px-12 lg:px-16">
+  <div class="master h-screen flex flex-col items-center justify-center text-white text-center px-0 sm:px-10  md:px-12 lg:px-16">
     <!-- ... existing template code ... -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class="p-6 bg-gray-300 rounded-lg shadow-lg ">
-        <h2 class="text-3xl font-bold text-blue-900 leading-7">Contact Details</h2>
+    <div class="grid grid-cols-10 gap-8">
+      <div class="col-span-12 p-16 bg-gray-200 rounded-lg shadow-lg">
+        <div class="grid grid-cols-2 gap-8">
+          <div class="bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-3xl font-bold text-center text-blue-900 leading-7">Contact Details</h2>
+          
+          <p class="text-gray-700 text-center mt-4">
+            HMR Environmental Compound, Silang Industrial Estate Canlubang, Calamba, Laguna, Philippines 4028
+          </p>
+          <p class="text-blue-900 text-center mt-4">info@fairdinkum.ph</p>
+          <p class="text-lg font-semibold text-blue-900 text-center mt-4">+63 2 584 4061 (Local) | +63 2 584 4061 (Manila)</p>
+        </div>
 
-        <p class="text-gray-700 mt-4">
-          HMR Environmental Compound, Silang Industrial Estate Canlubang, Calamba, Laguna, Philippines 4028
-        </p>
-        <p class="text-blue-900 mt-4">info@fairdinkum.ph</p>
-        <p class="text-lg font-semibold text-blue-900 mt-4">+63 2 584 4061 (Local) | +63 2 584 4061 (Manila)</p>
-      </div>
-
-      <div class="p-6 bg-gray-300 rounded-lg shadow-lg">
-        <h2 class="text-3xl font-bold text-blue-900 font-red-hat-display leading-7">Any Query?</h2>
-        <form @submit.prevent="submitForm" class="mt-4">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div>
-              <label for="name" class="block text-sm font-medium text-gray-600">Your Name:</label>
-              <input type="text" id="name" v-model="form.name" class="mt-1 p-2 w-full border rounded" required>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h2 class="text-3xl font-bold text-center text-blue-900 font-red-hat-display leading-7">Any Query?</h2>
+          <form @submit.prevent="submitForm" class="mt-4">
+            <div class="grid grid-cols-2 gap-4 mb-4">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-600">Your Name:</label>
+                <input type="text" id="name" v-model="form.name" class="mt-1 p-2 w-full border rounded" required>
+              </div>
+              <div>
+                <label for="mobile" class="block text-sm font-medium text-gray-600">Your Mobile:</label>
+                <input 
+                    type="text" 
+                    id="mobile" 
+                    v-model="form.mobile_no" 
+                    class="mt-1 p-2 w-full border rounded"
+                    placeholder="09*********"
+                    pattern="09\d{9}"
+                    maxlength="11"
+                    required
+                    title="Must be 11 digits (e.g., 09123456789)"  
+                    >
+              </div>
             </div>
-            <div>
-              <label for="mobile" class="block text-sm font-medium text-gray-600">Your Mobile:</label>
-              <input
-                type="text"
-                id="mobile"
-                v-model="form.mobile_no"
-                class="mt-1 p-2 w-full border rounded"
-                placeholder="09*********"
-                pattern="09\d{9}"
-                maxlength="11"
-                required
-                title="Must be 11 digits (e.g., 09123456789)"
-              >
+            <div class="grid grid-cols-2 gap-4 mb-4">
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-600">Your Email Address:</label>
+                <input type="email" id="email" v-model="form.email_address" class="mt-1 p-2 w-full border rounded" >
+              </div>
+              <div>
+                <label for="subject" class="block text-sm font-medium text-gray-600" required>Subject:</label>
+                <input type="text" id="subject" v-model="form.subject" class="mt-1 p-2 w-full border rounded">
+              </div>
             </div>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div>
-              <label for="email" class="block text-sm font-medium text-gray-600">Your Email Address:</label>
-              <input type="email" id="email" v-model="form.email_address" class="mt-1 p-2 w-full border rounded">
+            <div class="mb-4">
+              <label for="message" class="block text-sm font-medium text-gray-600">Your Message:</label>
+              <textarea id="message" v-model="form.message" class="mt-1 p-2 w-full border rounded"></textarea>
             </div>
-            <div>
-              <label for="subject" class="block text-sm font-medium text-gray-600" required>Subject:</label>
-              <input type="text" id="subject" v-model="form.subject" class="mt-1 p-2 w-full border rounded">
-            </div>
-          </div>
-          <div class="mb-4">
-            <label for="message" class="block text-sm font-medium text-gray-600">Your Message:</label>
-            <textarea id="message" v-model="form.message" class="mt-1 p-2 w-full border rounded"></textarea>
-          </div>
-          <div class="mb-4 flex justify-center">
-            <button class="custom-button text-gray-900 hover:bg-slate-950 hover:text-white py-3 px-6 md:px-8 font-extrabold rounded transition-all transform duration-300 ease-in-out hover:shadow-xl w-full md:w-auto" @click="submitForm">
+            <div class="mb-4 flex justify-center">
+            <button class="custom-button text-gray-900 hover:bg-slate-950 hover:text-white py-3 px-6 md:px-8 font-extrabold rounded transition-all transform duration-300 ease-in-out hover:shadow-xl w-1/2" @click="submitForm">
               Contact Us
             </button>
           </div>
-        </form>
+          </form>
+        </div>
+        </div>
       </div>
+
     </div>
-  </div>
+    </div>
+
 </template>
 
 <script>
