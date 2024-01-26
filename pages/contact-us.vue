@@ -122,7 +122,7 @@ export default {
 <style scoped>
 
 .master {
-  background: url('~/assets/');
+  background: url('~/assets/sample.jpg');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
