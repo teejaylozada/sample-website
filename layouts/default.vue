@@ -1,31 +1,68 @@
 <template>
   <div>
+    <!-- Header -->
     <header class="bg-gray-900 text-white py-4 md:py-6">
       <div class="container mx-auto flex justify-between items-center px-4 md:px-6">
         <!-- Logo -->
-        <div class="flex-container" @click="handleClick">
-          <img src="~/assets/logo.png" alt="Logo" class="logo" />
-          <div class="text-container">
-              <h1 class="text-lg sm:text-lg lg:text-lg text-gray-200 font-extrabold shadow-text font-display mb-2">
-                  Dental Clinic Name
-              </h1>
-          </div>
+        <div class="ml-4 md:ml-0">
+          <img src="~/assets/logo.png" alt="Logo" class="h-12 w-16 md:h-16 md:w-20" />
         </div>
 
+        <div class="md:hidden relative" ref="dropdownContainer">
+          <!-- Burger Menu Button -->
+          <button @click="toggleMenu" class="text-white p-2 focus:outline-none">
+            <!-- Burger Icon SVG or any other icon goes here -->
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+          </button>
+
+          <!-- Dropdown Menu (Visible when the menu is open) -->
+          <div v-if="isMenuOpen" ref="dropdownMenu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-md z-10 border border-gray-300 overflow-hidden">
+            <div class="py-1">
+              <NuxtLink to="/" class="block px-4 py-2 text-teal-500 hover:bg-teal-100 flex items-center transition duration-300">
+                <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h18M4 10h16M4 16h16"></path>
+                </svg>
+                Home
+              </NuxtLink>
+              <NuxtLink to="/about" class="block px-4 py-2 text-teal-500 hover:bg-teal-100 flex items-center transition duration-300">
+                <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+                About
+              </NuxtLink>
+              <NuxtLink to="/services" class="block px-4 py-2 text-teal-500 hover:bg-teal-100 flex items-center transition duration-300">
+                <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                Services
+              </NuxtLink>
+              <NuxtLink to="/contact-us" class="block px-4 py-2 text-teal-500 hover:bg-teal-100 flex items-center transition duration-300">
+                <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3v2H9v-2l3-3V8m0 6v2"></path>
+                </svg>
+                Contact Us
+              </NuxtLink>
+            </div>
+          </div>
+
+
+        </div>
 
         <!-- Navigation Links -->
         <ul class="hidden md:flex space-x-6 text-sm items-center justify-center font-bold">
-            <li><NuxtLink to="/" class="nav-link">Home</NuxtLink></li>
+           <li><NuxtLink to="/" class="nav-link">Home</NuxtLink></li>
             <li><NuxtLink to="/about" class="nav-link">About</NuxtLink></li>
             <li><NuxtLink to="/services" class="nav-link">Services</NuxtLink></li>
             <li><NuxtLink to="/contact-us" class="nav-link">Contact Us</NuxtLink></li>
-          <li>        
+			<li>        
             <button class="custom-button text-gray-900 hover:bg-slate-950 hover:text-white py-3 px-6 md:px-8 font-extrabold rounded transition-all transform duration-300 ease-in-out hover:shadow-xl" @click="handleClick">
               Book Appointment
             </button>
           </li>
         </ul>
-
       </div>
     </header>
 
@@ -75,11 +112,39 @@
 
 <script setup lang="ts">
 import OurMiniMap from "@/components/mini-map.vue"
+import { ref, onUnmounted } from 'vue';
 
 const handleClick = () => {
   alert("Dental Clinic Name clicked!");
 }
 
+
+const isMenuOpen = ref(false);
+
+function toggleMenu() {
+  isMenuOpen.value = !isMenuOpen.value;
+
+  if (isMenuOpen.value) {
+    // Attach global click event listener to close the menu when clicking outside
+    document.addEventListener('click', closeMenu);
+  } else {
+    // Remove the global click event listener when the menu is closed
+    document.removeEventListener('click', closeMenu);
+  }
+}
+
+function closeMenu(event) {
+  const dropdownContainer = document.querySelector('.md\\:hidden'); // Select the dropdown menu element
+  if (dropdownContainer && !dropdownContainer.contains(event.target)) {
+    // Click occurred outside the dropdown, close the menu
+    isMenuOpen.value = false;
+  }
+}
+
+// Remove the global click event listener when the component is unmounted
+onUnmounted(() => {
+  document.removeEventListener('click', closeMenu);
+});
 </script>
 
 <style scoped>

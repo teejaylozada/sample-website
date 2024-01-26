@@ -1,7 +1,7 @@
 <template>
   <div class="p-4 text-center">
-    <div class="slider-container h-full">
-      <!-- adjust the 310 if images are to many -->
+    <h1 class="text-3xl font-bold mb-4">Past Projects</h1>
+    <div class="slider-container">
       <div class="slider" :style="{ transform: 'translateX(' + -currentIndex * (310 / totalImages) + '%)' }"> 
         <div v-for="(image, index) in images" :key="index" class="slider-item">
           <div class="slider-image-container">
@@ -20,8 +20,8 @@
 </template>
 
 <script setup>
-  import { ref, onMounted, onUnmounted } from 'vue';
-  const images = [
+import { ref, onMounted, onUnmounted } from 'vue';
+const images = [
   {
       src: '/project-images/1a.jpg',
       text: {
@@ -116,23 +116,41 @@
   let slideshowInterval;
 
   function nextSlide() {
-    currentIndex.value = (currentIndex.value + 4) % totalImages;
-    pauseSlideshow();
-    setTimeout(() => resumeSlideshow(), 5000);
+  currentIndex.value++;
+  if (currentIndex.value >= totalImages) {
+    const container = document.querySelector('.slider');
+    container.style.transition = 'none';
+    currentIndex.value = 0;
+    container.style.transform = `translateX(0%)`;
+    setTimeout(() => {
+      container.style.transition = 'transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    }, 0);
   }
+  pauseSlideshow();
+  setTimeout(() => resumeSlideshow(), 5000);
+}
 
-  function prevSlide() {
-    currentIndex.value = (currentIndex.value - 4 + totalImages) % totalImages;
-    pauseSlideshow();
-    setTimeout(() => resumeSlideshow(), 5000);
+function prevSlide() {
+  currentIndex.value--;
+  if (currentIndex.value < 0) {
+    const container = document.querySelector('.slider');
+    container.style.transition = 'none';
+    currentIndex.value = totalImages - 1;
+    container.style.transform = `translateX(${-currentIndex.value * (100 / totalImages)}%)`;
+    setTimeout(() => {
+      container.style.transition = 'transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    }, 0);
   }
+  pauseSlideshow();
+  setTimeout(() => resumeSlideshow(), 5000);
+}
 
   function startSlideshow() {
     slideshowInterval = setInterval(() => {
       if (!isPaused.value) {
         nextSlide();
       }
-    }, 4500);
+    }, );
   }
 
   function pauseSlideshow() {
@@ -152,9 +170,8 @@
   onUnmounted(() => {
     clearInterval(slideshowInterval);
   });
+
 </script>
-
-
 
 <style scoped>
 h1 {
@@ -171,12 +188,15 @@ h1 {
 
 .slider {
   display: flex;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .slider-item {
   position: relative;
   box-sizing: border-box;
+  flex: 0 0 35%;
+  margin: 0px;
+  border: 4px solid #fff;
   overflow: hidden;
   width: 100%; /* Set width to 100% */
   height: 40vh; /* Set the fixed height for the images */
@@ -186,7 +206,7 @@ h1 {
   width: 100%;
   height: 50vh;
   object-fit: cover; /* Ensure the image covers the entire container while preserving aspect ratio */
-  border: 1px solid black;
+  border: 4px solid black;
 }
 
 .slider-text-overlay {
@@ -243,16 +263,30 @@ h1 {
   background-color: #333;
   color: #fff;
 }
-@media (min-width: 768px) {
+@media (min-width: 576px) {
   .slider-item {
-    flex: 0 0 30%; /* Adjust the width for medium-sized screens */
-    height: 50vh; /* Set the fixed height for the images */
+    flex: 0 0 45%;
+    height: 30vh;
   }
 }
 
+@media (min-width: 768px) {
+  .slider-item {
+    flex: 0 0 30%;
+    height: 40vh;
+  }
+}
 
-@media (min-width: 1024px) {  .slider-item {
-    flex: 0 0 26%; /* Adjust the width for larger screens */
+@media (min-width: 992px) {
+  .slider-item {
+    flex: 0 0 30%;
+    height: 50vh;
+  }
+}
+
+@media (min-width: 1200px) {
+  .slider-item {
+    flex: 0 0 26%;
   }
 }
 
